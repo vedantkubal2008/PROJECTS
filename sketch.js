@@ -22,18 +22,13 @@ function preload() {
 function setup() {
   //creating canvas
   createCanvas(600, 700);
-
-  //creating land
-  
-  
   //creating iorn man
   iornMan = createSprite(300, 550, 10, 10);
   iornMan.addAnimation("flying",iornMan_Image);
   iornMan.scale = 0.5;
-
+  //creating land
   land=createSprite(200, 650, 1000, 100);
   land.shapeColor=rgb(99, 16, 10)
-  
   //creating sides
   side1 = createSprite(0, 200, 10, 400);
   side1.visible = false;
@@ -45,7 +40,7 @@ function setup() {
   missileGroup = new Group();
   cloudsGroup = new Group();
 }
-n = 0
+//n = 0
 
 function draw() {
   background(168,182,255);
@@ -56,28 +51,24 @@ function draw() {
     }
   } else if (gameState === PLAY) {
     if (keyDown(UP_ARROW)){
-    //making background move
-      iornMan.y -= 15;
-    camera.position.y = iornMan.y - 167
-    distance+=5;
+        //making background move
+        iornMan.y -= 15;
+        camera.position.y = iornMan.y - 167
+        distance+=5;
+        //spawn Missles
     if (frameCount % 50 === 0) {
-      spawnMissile();
-    }
+         spawnMissile();
+     }
 
     //spawn Coins
     if (frameCount % 150 === 0) {
       spawnCoins();
     }
-    
-    //spawn Clouds
+     //spawn Clouds
       spawnClouds();
-  //  iornMan.velocityY = -10
-   // side1.y = iornMan.y-200
-    //side2.y = iornMan.y-200
+ 
     }
-    //spawn Missles
-  
-
+   
     //making iorn man move
     if (keyDown(RIGHT_ARROW)) {
       iornMan.x += 5
@@ -89,7 +80,6 @@ function draw() {
 
     iornMan.collide(side1);
     iornMan.collide(side2);
-    //iornMan.debug = true;
     iornMan.setCollider("rectangle", 0, 0, 170, 250);
 
     //scoreBoard
@@ -114,7 +104,6 @@ function draw() {
     }
   }
 if (distance>5000){
-   // gameEnd();
    gameState=END
 }
   drawSprites();
@@ -157,7 +146,7 @@ if (distance>5000){
 }
 
 //creating funtion to spawn Missile
-//if (frameCount % 100=== 0) {
+
 function spawnMissile() {
   missile = createSprite(0, iornMan.y - 400, 10, 10);
   missile.addImage("missile", missile_Image);
@@ -166,11 +155,11 @@ function spawnMissile() {
   missile.lifetime = 80
   missile.setCollider("rectangle",27,0,200,400);
   missileGroup.add(missile)
-//}
+
 }
 
 function spawnCoins() {
- // if (frameCount % 150=== 0) {
+
   coin = createSprite(0, iornMan.y - 400, 10, 10);
   coin.addImage("coin", coins_Image);
   coin.x = random(80, 320);
@@ -181,17 +170,15 @@ function spawnCoins() {
 
   coinsGroup.add(coin)
   }
-//}
+
 
 function spawnClouds() {
-  //write code here to spawn the clouds
+ 
   if (frameCount % 100=== 0) {
      cloud = createSprite(600,iornMan.y - 400,40,10);
     cloud.x = Math.round(random(10,390));
     cloud.addImage(cloudImage);
     cloud.scale = random(0.5,0.5);
-    
-     //assign lifetime to the variable
     cloud.lifetime = 100;
     
     //adjust the depth
@@ -199,7 +186,7 @@ function spawnClouds() {
     iornMan.depth += 1;
     
     //adding cloud to the group
-   cloudsGroup.add(cloud);
+    cloudsGroup.add(cloud);
     }
 }
 
