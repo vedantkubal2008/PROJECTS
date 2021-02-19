@@ -40,7 +40,7 @@ function setup() {
   missileGroup = new Group();
   cloudsGroup = new Group();
 }
-//n = 0
+
 
 function draw() {
   background(168,182,255);
